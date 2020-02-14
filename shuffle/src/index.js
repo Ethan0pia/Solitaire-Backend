@@ -38,8 +38,8 @@ app.post(uri, (req, res)=>{
 	if(!Array.isArray(req.body.deck)){
 		return res.status(status.CONFLICT).json({"msg": "The deck value must be an array of cards."});
 	}
-	var shuffledDeck = req.body.deck;
-	var currentIndex = shuffledDeck.length, temporaryValue, randomIndex;
+	let shuffledDeck = req.body.deck;
+	let currentIndex = shuffledDeck.length, temporaryValue, randomIndex;
 	while (0 !== currentIndex) {
 		randomIndex = Math.floor(Math.random() * currentIndex);
 		currentIndex -= 1;

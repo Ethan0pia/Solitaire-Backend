@@ -40,7 +40,7 @@ app.post(uri, (req, res)=>{
 	if(!Array.isArray(req.body.deck)){
 		return res.status(status.CONFLICT).json({"msg": "The deck value must be an array of cards."});
 	}
-	var decks = {
+	let decks = {
 		"deck1": req.body.deck.slice(0, req.body.deck.length/2),
 		"deck2": req.body.deck.slice(req.body.deck.length/2, req.body.deck.length)
 	}

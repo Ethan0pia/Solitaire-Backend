@@ -3,7 +3,7 @@ const status = require('http-status');
 const http = require('http');
 const app = express();
 app.use(express.json());
-var fs = require('fs');
+let fs = require('fs');
 
 const version = 1;
 const uri = `/api/v${version}`;
@@ -31,25 +31,25 @@ app.use(function(req, res, next) {
 	}
 });
 
-var convertImage = function(file){
-	var bitmap = fs.readFileSync(__dirname + file);
+let convertImage = function(file){
+	let bitmap = fs.readFileSync(__dirname + file);
 	return new Buffer(bitmap).toString('base64');
 }
 
 //returns a new deck of cards.
 app.get(`${uri}/:number`, (req, res)=>{
-	var newDeck = [];
+	let newDeck = [];
 	if(isNaN(req.params['number'])){
 		return res.status(status.CONFLICT).json({"msg": `You did not send a number of decks to create. try ${uri}/{number of decks to create}.`});
 	}
 	if(req.params['number']<1){
 		return res.status(status.CONFLICT).json({"msg": `We cannot create 0 decks. Please try a different number.`});
 	}
-	var suits = ['d','s','c','h'];
-	for(var suit of suits){
-		for(var i=1;i<=13;i++){
+	let suits = ['d','s','c','h'];
+	for(let suit of suits){
+		for(let i=1;i<=13;i++){
 			for(y=0;y<req.params['number'];y++){
-				var img = convertImage(`/cards/${suit}/${i}.png`);
+				let img = convertImage(`/cards/${suit}/${i}.png`);
 				newDeck.push({
 					"value": i,
 					"suit": suit,
