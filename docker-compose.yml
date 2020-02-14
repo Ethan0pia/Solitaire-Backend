@@ -1,0 +1,46 @@
+version: '3'
+services:
+  db:
+    image: mongo:4
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password 
+  check-game-winner-war:
+    build: ./checkGameWinnerWar
+  compare:
+    build: ./compare
+  create-deck:
+    build: ./createDeck
+    environment:
+      - EXTERNAL_FQDN=monkey-fun-time
+  discard:
+    build: ./discard
+  draw-card:
+    build: ./drawCard
+  manager:
+    build: ./manager
+    depends_on:
+      - db
+  restack:
+    build: ./restack
+  shuffle:
+    build: ./shuffle
+  split-deck:
+    build: ./splitDeck
+  war:
+    build: ./war
+  orchestrator:
+    build: ./orchestrator
+    ports:
+      - "4000:4000"
+    depends_on:
+      - check-game-winner-war
+      - compare
+      - create-deck
+      - discard
+      - draw-card
+      - manager
+      - restack
+      - shuffle
+      - split-deck
+      - war
