@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "^4.16.4",
     "http-status": "^1.2.0",
-    "mongoose": "^5.3.10"
+    "mongoose": "^5.7.5"
   },
   "devDependencies": {
     "nodemon": "^1.18.6"
